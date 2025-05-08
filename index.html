@@ -15,7 +15,7 @@
             box-sizing: border-box;
             transition: all 0.3s ease;
         }
-        
+
         :root {
             /* Updated color scheme based on Image 2 */
             --bg-color: #fafafa;
@@ -131,6 +131,8 @@
             margin-bottom: 20px;
             animation: fadeInDown 1s;
             color: white;
+            position: relative;
+            z-index: 2;
         }
         
         .hero p {
@@ -140,6 +142,8 @@
             margin: 0 auto 30px;
             opacity: 0.9;
             animation: fadeInUp 1s;
+            position: relative;
+            z-index: 2;
         }
         
         .btn {
@@ -153,6 +157,8 @@
             margin-top: 20px;
             box-shadow: 0 5px 15px rgba(224, 99, 119, 0.3);
             border: 2px solid transparent;
+            position: relative;
+            z-index: 2;
         }
         
         .btn:hover {
@@ -291,11 +297,22 @@
             overflow: hidden;
             box-shadow: var(--card-shadow);
             transition: transform 0.4s ease;
+            perspective: 1000px;
         }
         
         .project-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .project-card-inner {
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.3s ease;
+        }
+        
+        .project-card:hover .project-card-inner {
+            transform: rotateY(5deg) rotateX(5deg);
         }
         
         .project-img {
@@ -452,6 +469,17 @@
             transform: scale(1.1);
         }
         
+        /* Hero Canvas for 3D Animation */
+        #hero-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0.5;
+        }
+        
         /* Responsive design */
         @media (max-width: 992px) {
             .timeline::after {
@@ -471,6 +499,10 @@
             .timeline-item::after {
                 left: 21px;
                 right: auto;
+            }
+            
+            .project-card:hover .project-card-inner {
+                transform: none; /* Disable 3D tilt on smaller screens */
             }
         }
         
@@ -558,10 +590,11 @@
     </header>
 
     <section id="home" class="hero">
+        <canvas id="hero-canvas"></canvas>
         <h1 class="animate__animated animate__fadeInDown">Tulsi Dubey</h1>
         <p class="animate__animated animate__fadeInUp">Computer Science Engineering (AIML) Student & Developer</p>
         <a href="#contact" class="btn animate__animated animate__fadeInUp">Get In Touch</a>
-        <a href="Tulsi_dubey_resume.pdf" download class="btn animate__animated animate__fadeInUp">Download Resume</a>
+        <a href="TulsiDubey.pdf" download class="btn animate__animated animate__fadeInUp">Download Resume</a>
     </section>
 
     <section id="about">
@@ -590,6 +623,7 @@
                         <span class="skill-tag">TensorFlow</span>
                         <span class="skill-tag">Statistical Analysis</span>
                         <span class="skill-tag">OpenCV</span>
+                        <span class="skill-tag">Natural Language Processing</span>
                     </div>
                 </div>
                 
@@ -601,6 +635,8 @@
                         <span class="skill-tag">Django</span>
                         <span class="skill-tag">Flask</span>
                         <span class="skill-tag">FastAPI</span>
+                        <span class="skill-tag">Javascript</span>
+                        <span class="skill-tag">Typescript</span>
                     </div>
                 </div>
                 
@@ -609,6 +645,7 @@
                     <div class="skills">
                         <span class="skill-tag">MySQL</span>
                         <span class="skill-tag">Firebase</span>
+                        <span class="skill-tag">Google Cloud</span>
                     </div>
                 </div>
                 
@@ -619,6 +656,7 @@
                         <span class="skill-tag">AWS EC2</span>
                         <span class="skill-tag">Power BI</span>
                         <span class="skill-tag">Git/GitHub</span>
+                        <span class="skill-tag">Figma</span>
                     </div>
                 </div>
             </div>
@@ -693,12 +731,13 @@
         <div class="education">
             <h3 class="fadeIn">Certifications</h3>
             <div class="skills">
-                <span class="skill-tag">Coursera Machine Learning Specialization</span>
-                <span class="skill-tag">OpenEDG PCAP: Programming Essentials in Python</span>
-                <span class="skill-tag">Oracle Database Foundations</span>
-                <span class="skill-tag">NVIDIA GenAI with Diffusion Model</span>
-                <span class="skill-tag">Eduskills TechCamp on Google Android</span>
-                <span class="skill-tag">Cisco Programming Essentials in C</span>
+                <span class="skill-tag">Coursera Machine Learning Specialization</span> <https://www.coursera.org/account/accomplishments/specialization/R60HTEBBYMBR?utm_source=link&utm_medium=certificate&utm_content=cert_image&utm_campaign=sharing_cta&utm_product=s12n>
+                <span class="skill-tag">OpenEDG PCAP: Programming Essentials in Python</span> <https://www.linkedin.com/in/tulsi-dubey-10a635269/details/certifications/1722092502959/single-media-viewer/?profileId=ACoAAEHEbVoBQofsqUkD4zyw5d09ujGfhlZdTgM>
+                <span class="skill-tag">Oracle Database Foundations</span> <https://www.linkedin.com/in/tulsi-dubey-10a635269/details/certifications/1722095490103/single-media-viewer/?profileId=ACoAAEHEbVoBQofsqUkD4zyw5d09ujGfhlZdTgM>
+                <span class="skill-tag">NVIDIA GenAI with Diffusion Model</span> <https://www.linkedin.com/in/tulsi-dubey-10a635269/details/certifications/1745735773083/single-media-viewer/?profileId=ACoAAEHEbVoBQofsqUkD4zyw5d09ujGfhlZdTgM>
+                <span class="skill-tag">Eduskills TechCamp on Google Android</span> <https://www.linkedin.com/in/tulsi-dubey-10a635269/details/certifications/1722160775411/single-media-viewer/?profileId=ACoAAEHEbVoBQofsqUkD4zyw5d09ujGfhlZdTgM>
+                <span class="skill-tag">HackerRank Software Engineer</span> <https://www.linkedin.com/in/tulsi-dubey-10a635269/details/certifications/1742739599070/single-media-viewer/?profileId=ACoAAEHEbVoBQofsqUkD4zyw5d09ujGfhlZdTgM>
+                <span class="skill-tag">Zscalar Zero Trust Associate</span> <https://verify.skilljar.com/c/8q34ua2d8cno>
             </div>
         </div>
         
@@ -718,78 +757,104 @@
         <h2 class="fadeIn">My Projects</h2>
         <div class="projects">
             <div class="project-card fadeInUp">
-                <img src="https://img.icons8.com/color/400/000000/artificial-intelligence.png" alt="NutrinoAI" class="project-img">
-                <div class="project-info">
-                    <h3>NutrinoAI: A Hybrid Recommendation System</h3>
-                    <div class="project-tech">
-                        <span>Node.js</span>
-                        <span>React</span>
-                        <span>Vite</span>
-                        <span>Python</span>
-                        <span>AI</span>
+                <div class="project-card-inner">
+                    <img src="https://img.icons8.com/color/400/000000/artificial-intelligence.png" alt="NutrinoAI" class="project-img">
+                    <div class="project-info">
+                        <h3>NutrinoAI: A Hybrid Recommendation System</h3>
+                        <div class="project-tech">
+                            <span>Node.js</span>
+                            <span>React</span>
+                            <span>Vite</span>
+                            <span>Python</span>
+                            <span>AI</span>
+                        </div>
+                        <p>A comprehensive AI project combining web development with data analysis. Features a modular server-client architecture ensuring scalability and effective communication between components.</p>
+                        <a href="https://github.com/Psp2705/Nutrino-AI" target="_blank" class="btn">View Project</a>
                     </div>
-                    <p>A comprehensive AI project combining web development with data analysis. Features a modular server-client architecture ensuring scalability and effective communication between components.</p>
-                    <a href="https://github.com/Psp2705/Nutrino-AI" target="_blank" class="btn">View Project</a>
                 </div>
             </div>
             
             <div class="project-card fadeInUp">
-                <img src="https://img.icons8.com/color/400/000000/blockchain-technology.png" alt="Decentralized File System" class="project-img">
-                <div class="project-info">
-                    <h3>Decentralized Cryptographic File Repository System</h3>
-                    <div class="project-tech">
-                        <span>Blockchain</span>
-                        <span>Python</span>
-                        <span>HTML</span>
-                        <span>Cryptography</span>
+                <div class="project-card-inner">
+                    <img src="https://img.icons8.com/color/400/000000/blockchain-technology.png" alt="Decentralized File System" class="project-img">
+                    <div class="project-info">
+                        <h3>Decentralized Cryptographic File Repository System</h3>
+                        <div class="project-tech">
+                            <span>Blockchain</span>
+                            <span>Python</span>
+                            <span>HTML</span>
+                            <span>Cryptography</span>
+                        </div>
+                        <p>A secure, decentralized repository for cryptographic file storage using blockchain technology, enhancing data integrity and privacy. Incorporates advanced cryptography methods and blockchain principles.</p>
+                        <a href="https://github.com/Sidra51/Decentralized-Cryptographic-File-Repository-Using-Blockchain" target="_blank" class="btn">View Project</a>
                     </div>
-                    <p>A secure, decentralized repository for cryptographic file storage using blockchain technology, enhancing data integrity and privacy. Incorporates advanced cryptography methods and blockchain principles.</p>
-                    <a href="https://github.com/Sidra51/Decentralized-Cryptographic-File-Repository-Using-Blockchain" target="_blank" class="btn">View Project</a>
                 </div>
             </div>
             
             <div class="project-card fadeInUp">
-                <img src="https://img.icons8.com/color/400/000000/language.png" alt="Language Profanity Filter" class="project-img">
-                <div class="project-info">
-                    <h3>Language Profanity Filteration Marathi</h3>
-                    <div class="project-tech">
-                        <span>NLP</span>
-                        <span>spaCy</span>
-                        <span>Speech-to-Text</span>
-                        <span>Content Moderation</span>
+                <div class="project-card-inner">
+                    <img src="https://img.icons8.com/color/400/000000/language.png" alt="Language Profanity Filter" class="project-img">
+                    <div class="project-info">
+                        <h3>Language Profanity Filteration Marathi</h3>
+                        <div class="project-tech">
+                            <span>NLP</span>
+                            <span>spaCy</span>
+                            <span>Speech-to-Text</span>
+                            <span>Content Moderation</span>
+                        </div>
+                        <p>Detects and substitutes inappropriate content in Marathi text. Supports Marathi speech-to-text conversion and performs language detection, tokenization, and lexical analysis.</p>
+                        <a href="https://github.com/TulsiDubey/Language-Profanity-filteration-Marathi-" target="_blank" class="btn">View Project</a>
                     </div>
-                    <p>Detects and substitutes inappropriate content in Marathi text. Supports Marathi speech-to-text conversion and performs language detection, tokenization, and lexical analysis.</p>
-                    <a href="https://github.com/TulsiDubey/Language-Profanity-filteration-Marathi-" target="_blank" class="btn">View Project</a>
                 </div>
             </div>
             
             <div class="project-card fadeInUp">
-                <img src="https://img.icons8.com/color/400/000000/artificial-intelligence.png" alt="Intelliagent Hub" class="project-img">
-                <div class="project-info">
-                    <h3>Intelliagent Hub</h3>
-                    <div class="project-tech">
-                        <span>Flask</span>
-                        <span>Ollama Llama</span>
-                        <span>LangChain</span>
-                        <span>AI</span>
+                <div class="project-card-inner">
+                    <img src="https://img.icons8.com/color/400/000000/artificial-intelligence.png" alt="Intelliagent Hub" class="project-img">
+                    <div class="project-info">
+                        <h3>Intelliagent Hub</h3>
+                        <div class="project-tech">
+                            <span>Flask</span>
+                            <span>Ollama Llama</span>
+                            <span>LangChain</span>
+                            <span>AI</span>
+                        </div>
+                        <p>AI-Powered Research Assistant integrating Ollama Llama and LangChain for intelligent information retrieval. Supports multi-source search across Wikipedia, DuckDuckGo, PubMed, and arXiv.</p>
+                        <a href="https://github.com/TulsiDubey/IntelliAgent-Hub" target="_blank" class="btn">View Project</a>
                     </div>
-                    <p>AI-Powered Research Assistant integrating Ollama Llama and LangChain for intelligent information retrieval. Supports multi-source search across Wikipedia, DuckDuckGo, PubMed, and arXiv.</p>
-                    <a href="https://github.com/TulsiDubey/IntelliAgent-Hub" target="_blank" class="btn">View Project</a>
                 </div>
             </div>
             
             <div class="project-card fadeInUp">
-                <img src="https://img.icons8.com/color/400/000000/sort.png" alt="Visual Sorting" class="project-img">
-                <div class="project-info">
-                    <h3>Visual Sorting</h3>
-                    <div class="project-tech">
-                        <span>Tkinter</span>
-                        <span>NumPy</span>
-                        <span>Algorithms</span>
-                        <span>GUI</span>
+                <div class="project-card-inner">
+                    <img src="https://img.icons8.com/color/400/000000/sort.png" alt="Visual Sorting" class="project-img">
+                    <div class="project-info">
+                        <h3>Visual Sorting</h3>
+                        <div class="project-tech">
+                            <span>Tkinter</span>
+                            <span>NumPy</span>
+                            <span>Algorithms</span>
+                            <span>GUI</span>
+                        </div>
+                        <p>Provides a GUI to visualize Bubble Sort, Insertion Sort, Selection Sort, and Merge Sort step-by-step. Allows users to create or randomize arrays with adjustable size and entry limits.</p>
+                        <a href="https://github.com/TulsiDubey/Visual-sorting" target="_blank" class="btn">View Project</a>
                     </div>
-                    <p>Provides a GUI to visualize Bubble Sort, Insertion Sort, Selection Sort, and Merge Sort step-by-step. Allows users to create or randomize arrays with adjustable size and entry limits.</p>
-                    <a href="https://github.com/TulsiDubey/Visual-sorting" target="_blank" class="btn">View Project</a>
+                </div>
+            </div>
+            
+            <div class="project-card fadeInUp">
+                <div class="project-card-inner">
+                    <img src="https://img.icons8.com/color/400/000000/database.png" alt="Sheet2DB" class="project-img">
+                    <div class="project-info">
+                        <h3>Sheet2DB</h3>
+                        <div class="project-tech">
+                            <span>Kotlin</span>
+                            <span>Figma</span>
+                            <span>SQLite</span>
+                        </div>
+                        <p>This external project, built in Kotlin with a Figma-designed UI, lets users upload Excel files and auto-convert them into SQLite databases. It supports multiple databases, dynamic search with filters, and record management, with options to export or share results, making data handling simple and efficient.</p>
+                        <a href="https://github.com/TulsiDubey/Sheet2DB" target="_blank" class="btn">View Project</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -821,7 +886,7 @@
     </section>
 
     <footer>
-        <p>&copy; 2025 Tulsi Dubey. All Rights Reserved.</p>
+        <p>© 2025 Tulsi Dubey. All Rights Reserved.</p>
         <div class="social-links">
             <a href="https://github.com/TulsiDubey" target="_blank"><i class="fab fa-github"></i></a>
             <a href="https://www.linkedin.com/in/tulsi-dubey-10a635269/" target="_blank"><i class="fab fa-linkedin"></i></a>
@@ -829,91 +894,165 @@
             <a href="tel:+918652881322"><i class="fas fa-phone"></i></a>
         </div>
     </footer>
-    
+
     <div class="theme-toggle" id="themeToggle">
         <i class="fas fa-moon"></i>
     </div>
-    
+
     <div class="scroll-top" id="scrollTop">
         <i class="fas fa-arrow-up"></i>
     </div>
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Theme Toggle
-            const themeToggle = document.getElementById('themeToggle');
-            const themeIcon = themeToggle.querySelector('i');
-            
-            themeToggle.addEventListener('click', function() {
-                document.body.dataset.theme = document.body.dataset.theme === 'dark' ? '' : 'dark';
-                themeIcon.className = document.body.dataset.theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize EmailJS with your public key
+        emailjs.init('u21jLDh7xH5tWfYDm');
+
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        themeToggle.addEventListener('click', function() {
+            document.body.dataset.theme = document.body.dataset.theme === 'dark' ? '' : 'dark';
+            themeIcon.className = document.body.dataset.theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        });
+        
+        // Scroll to Top Button
+        const scrollTop = document.getElementById('scrollTop');
+        
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                scrollTop.classList.add('active');
+            } else {
+                scrollTop.classList.remove('active');
+            }
+        });
+        
+        scrollTop.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
             });
-            
-            // Scroll to Top Button
-            const scrollTop = document.getElementById('scrollTop');
-            
-            window.addEventListener('scroll', function() {
-                if (window.pageYOffset > 300) {
-                    scrollTop.classList.add('active');
-                } else {
-                    scrollTop.classList.remove('active');
-                }
-            });
-            
-            scrollTop.addEventListener('click', function() {
-                window.scrollTo({
-                    top: 0,
+        });
+        
+        // Smooth Scrolling for Navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
                     behavior: 'smooth'
                 });
             });
-            
-            // Smooth Scrolling for Navigation
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
+        });
+        
+        // Animations on Scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate__animated');
                     
-                    document.querySelector(this.getAttribute('href')).scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                });
-            });
-            
-            // Animations on Scroll
-            const observerOptions = {
-                threshold: 0.1
-            };
-            
-            const observer = new IntersectionObserver(function(entries, observer) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animate__animated');
-                        
-                        if (entry.target.classList.contains('fadeIn')) {
-                            entry.target.classList.add('animate__fadeIn');
-                        } else if (entry.target.classList.contains('fadeInUp')) {
-                            entry.target.classList.add('animate__fadeInUp');
-                        } else if (entry.target.classList.contains('fadeInDown')) {
-                            entry.target.classList.add('animate__fadeInDown');
-                        }
-                        
-                        observer.unobserve(entry.target);
+                    if (entry.target.classList.contains('fadeIn')) {
+                        entry.target.classList.add('animate__fadeIn');
+                    } else if (entry.target.classList.contains('fadeInUp')) {
+                        entry.target.classList.add('animate__fadeInUp');
+                    } else if (entry.target.classList.contains('fadeInDown')) {
+                        entry.target.classList.add('animate__fadeInDown');
                     }
-                });
-            }, observerOptions);
-            
-            document.querySelectorAll('.fadeIn, .fadeInUp, .fadeInDown').forEach(el => {
-                observer.observe(el);
+                    
+                    observer.unobserve(entry.target);
+                }
             });
+        }, observerOptions);
+        
+        document.querySelectorAll('.fadeIn, .fadeInUp, .fadeInDown').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Contact Form Submission
+        const contactForm = document.getElementById('contactForm');
+        
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
             
-            // Contact Form Submission
-            const contactForm = document.getElementById('contactForm');
+            const formData = new FormData(contactForm);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const subject = formData.get('subject');
+            const message = formData.get('message');
             
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                const formData = new FormData(contactForm);
-                const name = formData.get('name');
-                const email = formData.get('email');
-                const subject = formData.get('subject');
-                const message = formData.get('message');
-                
+            // Send email using EmailJS
+            emailjs.send('service_1kvmqbm', 'template_80of6df', {
+                from_name: name,
+                from_email: email,
+                subject: subject,
+                message: message,
+                to_email: 'dubeytulsi3@gmail.com'
+            }).then(
+                function(response) {
+                    alert('Message sent successfully!');
+                    contactForm.reset();
+                },
+                function(error) {
+                    alert('Failed to send message. Please try again.');
+                    console.error('EmailJS error:', JSON.stringify(error, null, 2));
+                }
+            );
+        });
+
+        // Three.js 3D Particle Animation for Hero Section
+        const canvas = document.getElementById('hero-canvas');
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
+        
+        renderer.setSize(window.innerWidth, canvas.offsetHeight);
+        camera.position.z = 50;
+        
+        const particles = [];
+        const particleCount = 100;
+        const geometry = new THREE.SphereGeometry(0.3, 16, 16);
+        const material = new THREE.MeshBasicMaterial({ color: 0xe06377 });
+        
+        for (let i = 0; i < particleCount; i++) {
+            const particle = new THREE.Mesh(geometry, material);
+            particle.position.set(
+                (Math.random() - 0.5) * 100,
+                (Math.random() - 0.5) * 100,
+                (Math.random() - 0.5) * 100
+            );
+            particle.velocity = new THREE.Vector3(
+                (Math.random() - 0.5) * 0.02,
+                (Math.random() - 0.5) * 0.02,
+                (Math.random() - 0.5) * 0.02
+            );
+            scene.add(particle);
+            particles.push(particle);
+        }
+        
+        function animate() {
+            requestAnimationFrame(animate);
+            particles.forEach(particle => {
+                particle.position.add(particle.velocity);
+                if (particle.position.x > 50 || particle.position.x < -50) particle.velocity.x *= -1;
+                if (particle.position.y > 50 || particle.position.y < -50) particle.velocity.y *= -1;
+                if (particle.position.z > 50 || particle.position.z < -50) particle.velocity.z *= -1;
+            });
+            renderer.render(scene, camera);
+        }
+        
+        animate();
+        
+        window.addEventListener('resize', () => {
+            renderer.setSize(window.innerWidth, canvas.offsetHeight);
+            camera.aspect = window.innerWidth / canvas.offsetHeight;
+            camera.updateProjectionMatrix();
+        });
+    });
+</script>
